@@ -1,0 +1,16 @@
+<h1>top saling</h1>
+
+<%= form_tag action: 'report' do %>
+    <%= date_field_tag 'start_date', params[:start_date], placeholder: "Enter Start Date", require: true %>
+    <%= date_field_tag 'end_date', params[:end_date], placeholder: "Enter End Date", require: true %>
+    <%= submit_tag 'Search' %>
+<%end%>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+</table>

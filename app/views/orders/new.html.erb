@@ -1,0 +1,59 @@
+<h1> Saling </h1>
+<%= simple_form_for @order do |f| %>  
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= simple_fields_for :customer do |ff| %>
+      <%= ff.input :name, label: 'Name: ', require: true %>
+      <%= ff.input :phone, label: 'Phone: ', require: true %>
+    <%end%>   
+
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+          <ul>
+            <% @order.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <% if @remained_lists == true %>
+      <h5> Sorry do not have enough inventory! </h5>
+      <%end%>
+
+        <%= f.add_nested_fields_link :order_details, 'Add', class: 'btn btn-primary' %>
+        <%= f.nested_fields_for :order_details do |ff| %>
+        <tr>
+          <td> <%= ff.input :product_id, collection: @products, label_method: :name, value_method: :id, require: true%> </td>
+          <td> <%= ff.input :quantity, input_html: { min: 1, step: 'any' }%> </td>
+          <td> <%= ff.remove_nested_fields_link 'Remove', class: 'btn btn-danger' %> </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+
+    <%= f.submit 'Save' %>
+    
+<%end%>

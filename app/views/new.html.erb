@@ -1,0 +1,31 @@
+<h1> Saling </h1>
+<%= simple_form_for @order do |f| %>
+    <%= simple_fields_for :customer do |ff| %>
+      <%= ff.input :name, label: 'Name: ' %>
+      <%= ff.input :phone, label: 'Phone: ' %>
+    <%end%>   
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.add_nested_fields_link :order_details, 'Add', class: 'btn btn-primary' %>
+        <%= f.nested_fields_for :order_details do |ff| %>
+        <tr>
+          <td> <%= ff.input :product_id, collection: @products, label_method: :name, value_method: :id %> </td>
+          <td> <%= ff.text_field :price, readonly: true %> </td>
+          <td> <%= ff.text_field :quantity %> </td>
+          <td> <%= ff.remove_nested_fields_link 'Remove', class: 'btn btn-danger' %> </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+
+    <%= f.submit 'Save' %>
+    
+<%end%>

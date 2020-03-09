@@ -1,0 +1,23 @@
+<h1> Saling </h1>
+<%= simple_form_for @order, :url => {:action => "checkout"} do |f| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.nested_fields_for :order_details do |ff| %>
+        <tr>
+          <td> <%= ff.input :product_id, collection: @products, label_method: :name, value_method: :id %> </td>
+          <td> <%= ff.text_field :quantity %> </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+
+    <%= f.submit 'Save' %>
+    
+<%end%>

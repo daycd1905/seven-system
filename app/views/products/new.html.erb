@@ -1,0 +1,27 @@
+<h1>Add New Product</h1>
+
+<%= simple_form_for @product do |f| %>
+	
+	<% if @product.errors.any? %>
+    	<div id="error_explanation">
+    	  <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+	
+    	  <ul>
+    	    <% @product.errors.full_messages.each do |message| %>
+    	      <li><%= message %></li>
+    	    <% end %>
+    	  </ul>
+    	</div>
+  	<% end %>
+
+
+	<p>
+		<%= f.input :name, require: true, lable: 'Name: '%>
+	</p>
+
+	<p>
+		<%= f.input :price, require: true, lable: 'Price: ' %>
+	</p>
+
+	<%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>

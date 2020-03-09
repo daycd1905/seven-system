@@ -1,0 +1,35 @@
+
+
+<h1>Summary</h1>
+
+<% if @inventories.blank? %>
+	<p> There are current products in inventory </p>
+<%else%>
+	<p style="color: red"> There are <%= @inventories.count() %> products need to being imported </p>
+<%end%>
+<%= link_to 'Show imports lists', {:action => 'import'} %>
+
+<table width="100%" border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Inventory</th>
+			<th>Option</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @products.each do |p| %>
+		<tr>
+			<td><%= p.name %></td>
+			<td><%= p.price %></td>
+			<td><%= p.inventory.quantity -%></td>
+			<td><%= link_to 'Edit', {:action => 'edit', :id => p.id} %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<br>
+<%= link_to "Add New Product", {:action => 'new'} %>

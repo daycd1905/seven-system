@@ -1,0 +1,21 @@
+<h1>Total</h1>
+<%= link_to 'report', {:action => 'find'} %>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order</th>
+            <th>User</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @orders.each do |o| %>
+        <tr>
+            <td><%= o.id %></td>
+            <td><%= o.customer.name%></td>
+            <td><%= o.created_at %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

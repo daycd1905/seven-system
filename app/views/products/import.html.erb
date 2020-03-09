@@ -1,0 +1,23 @@
+<table style="width: 100%" border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @imports.each do |p| %>
+        <tr>
+            <td><%= p.name %></td>
+            <td><%= p.price %></td>
+            <td><%= p.inventory.quantity %></td>
+            <td><%= link_to 'Edit', {:action => 'edit', :id => p.id} %></td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
+
+<%= link_to 'Back', {:action => 'index'}  %>

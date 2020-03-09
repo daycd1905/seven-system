@@ -1,0 +1,31 @@
+
+
+<h1>Edit Edtails</h1>
+
+<%= simple_form_for @product, :url => {:action => "update", :id => @product.id} do |f| %>
+
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :name, require: true %>
+  <%= f.input :price, require: true %>
+  <%= f.simple_fields_for :inventory do |ff| %>
+      <%= ff.input :quantity, require: true %>
+  <%end%>
+  <br>
+	
+	<%= f.add_nested_fields_link :inventory %>
+	<%= f.submit "Save" %>
+<%end%>
+
+
+<%= link_to 'Back', {:action => 'index'} %>

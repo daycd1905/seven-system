@@ -1,0 +1,27 @@
+<h1> Saling </h1>
+<%= simple_form_for @order_form, :url => {:action => "create_order_form"} do |f| %>  
+
+  <%= f.input :customer_name, label: 'Customer Name: ' %>
+  <%= f.input :customer_phone, label: 'Customer Phone: ' %>
+
+  <table>
+    <thead>
+      <tr>
+        <th> Name </th>
+        <th> Quantity </th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <tr>
+          <td> <%= f.input :product_id, collection: @products, label_method: :name, value_method: :id, require: true%> </td>
+          <td> <%= f.input :quantity, input_html: { min: 1, step: 'any' }%> </td>
+        </tr>
+      </tr>
+    </tbody>
+  </table>
+
+
+    
+<%end%>

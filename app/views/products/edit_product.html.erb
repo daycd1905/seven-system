@@ -1,0 +1,15 @@
+<h1>Edit Edtails</h1>
+
+<%= simple_form_for @form, :url => {:action => "update_product", :id => @form.id} do |f| %>
+
+  <%= f.input :name, require: true %>
+  <%= f.input :price, require: true %>
+  <%= f.input :quantity, require: true %>
+ 
+  <br>
+	
+	<%= f.submit "Save" %>
+<%end%>
+
+
+<%= link_to 'Back', {:action => 'index'} %>
